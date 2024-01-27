@@ -9,7 +9,7 @@
 <body>
     <div class="container my-5">
         <h2>List Obat</h2>
-        <a class="btn btn-primary" href="http://localhost/materi%20php/crud/create.php" role="button">Obat Baru</a>
+        <a class="btn btn-primary" href="http://localhost/materi%20php/job%204/tambah.php" role="button">Obat Baru</a>
         <br>
         <table class="table">
             <thead>
