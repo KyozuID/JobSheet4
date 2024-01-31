@@ -26,10 +26,10 @@ if(!isset($_SESSION['admin_name'])){
 <div class="container">
 
     <div class="content">
-        <h1>hi, <span>admin</span></h1>
-        <h1>Selamat datang <span><?php echo $_SESSION['admin_name'] ?></span></h1>
-        <p>ini adalah halaman admin</p>
-        <a href="index.php  " class="btn">masuk</a>
+        <h1>Hi, <span><?php echo $_SESSION['admin_name'] ?></span></h1>
+        <h1>Selamat Datang Di A24</h1>
+        <p></p>
+        <a href="list.php  " class="btn">masuk</a>
         <a href="index.php" class="btn">keluar</a>
     </div>
 

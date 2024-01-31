@@ -62,7 +62,6 @@ if(isset($_POST['submit'])){
         <input type="password" name="cpassword" required placeholder="konfirmasi password anda">
         <select name="user_type">
             <option value="user">Pengguna</option>
-            <option value="admin">admin</option>
         </select> 
         <input type="submit" name="submit" value="Daftar Sekarang" class="form-btn">
         <p>Sudah memiliki akun? <a href="JobSheet4/index.php">Masuk sekarang</a></p>

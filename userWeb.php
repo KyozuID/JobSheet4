@@ -9,9 +9,8 @@
 <body>
     <div class="container my-5">
         <h2>Data Obat</h2>
-        <a class="btn btn-primary" href="http://localhost/JobSheet4/tambah.php" role="button">Obat Baru</a>
-        <a class="btn btn-primary" href="http://localhost/JobSheet4/pembelian.php" role="button">Pembelian</a>
-        <a class="btn btn-primary" href="http://localhost/JobSheet4/index.php" role="button">Keluar</a>
+        <a class="btn btn-primary" href="http://localhost/JobSheet4/pembelian.php" role="button">Beli Obat</a>
+        <a class="btn btn-danger" href="http://localhost/JobSheet4/index.php" role="button">Keluar</a>
         <br>
         <table class="table">
             <thead>
@@ -23,7 +22,6 @@
                     <th>Tanggal Produksi</th>
                     <th>Tanggal Kadaluarsa</th>
                     <th>Stok</th>
-                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,10 +53,6 @@
                 <td>{$row['tanggal_produksi']}</td>
                 <td>{$row['tanggal_kadaluarsa']}</td>
                 <td>{$row['stok']}</td>
-                <td>
-                    <a class='btn btn-primary btn-sm' href='edit.php?id={$row['id']}'>Edit</a>
-                    <a class='btn btn-danger btn-sm' href='hapus.php?id={$row['id']}'>Hapus</a>
-                </td>
             </tr>
         ";
     }

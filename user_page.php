@@ -26,10 +26,9 @@ if(!isset($_SESSION['user_name'])){
 <div class="container">
 
     <div class="content">
-        <h1>hi, <span>pengguna</span></h1>
-        <h1>Selamat datang <span><?php echo $_SESSION['user_name'] ?></span></h1>
-        <p>ini adalah halaman pengguna</p>
-        <a href="list.php" class="btn">masuk</a>
+        <h1>Hi, <span><?php echo $_SESSION['user_name'] ?></span></h1>
+        <h1>Selamat Datang Di A24</h1>
+        <a href="userWeb.php" class="btn">masuk</a>
         <a href="index.php" class="btn">keluar</a>
     </div>
 
