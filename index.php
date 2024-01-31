@@ -49,7 +49,7 @@
                             <td>{$row['tanggal_produksi']}</td>
                             <td>{$row['tanggal_kadaluarsa']}</td>
                             <td>
-                                <a class='btn btn-primary btn-sm' href='/db_apotek/edit.php?id={$row['id']}'>Edit</a>
+                                <a class='btn btn-primary btn-sm' href='http://localhost/materi%20php/Job%204/edit.php?id={$row['id']}'>Edit</a>
                                 <a class='btn btn-danger btn-sm' href='/db_apotek/delete.php?id={$row['id']}'>Hapus</a>
                             </td>
                         </tr>
