@@ -13,6 +13,6 @@ if (isset($_GET["id"])) {
     $result = $connection->query($sql);
 }
 
-header("location: http://localhost/materi%20php/job%204/index.php");
+header("location: http://localhost/JobSheet4/index.php");
 exit;
 ?>

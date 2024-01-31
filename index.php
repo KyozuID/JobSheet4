@@ -9,7 +9,7 @@
 <body>
     <div class="container my-5">
         <h2>List Obat</h2>
-        <a class="btn btn-primary" href="http://localhost/materi%20php/job%204/tambah.php" role="button">Obat Baru</a>
+        <a class="btn btn-primary" href="http://localhost/JobSheet4/tambah.php" role="button">Obat Baru</a>
         <br>
         <table class="table">
             <thead>
@@ -52,8 +52,8 @@
                 <td>{$row['tanggal_produksi']}</td>
                 <td>{$row['tanggal_kadaluarsa']}</td>
                 <td>
-                    <a class='btn btn-primary btn-sm' href='http://localhost/materi%20php/Job%204/edit.php?id={$row['id']}'>Edit</a>
-                    <a class='btn btn-danger btn-sm' href='http://localhost/materi%20php/Job%204/hapus.php?id={$row['id']}'>Hapus</a>
+                    <a class='btn btn-primary btn-sm' href='localhost/JobSheet4/edit.php?id={$row['id']}'>Edit</a>
+                    <a class='btn btn-danger btn-sm' href='localhost/JobSheet4/hapus.php?id={$row['id']}'>Hapus</a>
                 </td>
             </tr>
         ";

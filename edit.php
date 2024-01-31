@@ -122,7 +122,7 @@ $connection->close();
             // ... (your existing POST handling code)
         
             // After updating, redirect to the main page
-            echo '<script>window.location.href = "http://localhost/materi%20php/job%204/index.php";</script>';
+            echo '<script>window.location.href = "localhost/JobSheet4/index.php";</script>';
         }
         ?>
 
@@ -165,7 +165,7 @@ $connection->close();
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <a class="btn btn-outline-primary" href="http://localhost/materi%20php/job%204/index.php">Batal</a>
+                    <a class="btn btn-outline-primary" href="http://localhost/JobSheet4/index.php">Batal</a>
                 </div>
             </div>
         </form>

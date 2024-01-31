@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $produksi = "";
         $kadaluarsa = "";
 
-        header("location: http://localhost/materi%20php/Job%204/");
+        header("location: http://localhost/JobSheet4/");
         exit;
     }
 }
@@ -131,7 +131,7 @@ $connection->close();
         <button type="submit" class="btn btn-primary">Tambah</button>
     </div>
     <div class="col-sm-3 d-grid">
-        <a class="btn btn-outline-primary" href="http://localhost/materi php/Job 4/index.php">Batal</a>
+        <a class="btn btn-outline-primary" href="http://localhost/JobSheet4/index.php">Batal</a>
     </div>
 </div>
 
