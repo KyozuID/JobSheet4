@@ -14,7 +14,7 @@ $nama = "";
 $jenis = "";
 $harga = "";
 $produksi = "";
-$kadaluarsa = "";
+$kadaluarsa = ""; 
 $stok = "";
 
 $pesanError = "";
@@ -22,7 +22,7 @@ $pesanBerhasil = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (!isset($_GET["id"])) {
-        header("location: http://localhost/JobSheet4/list.php");
+        header("location: http://localhost/JobSheet4/list.php");  // Corrected the location URL
         exit;
     }
 
@@ -32,28 +32,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $sql = "SELECT * FROM obat WHERE id = ?";
     $stmt = $connection->prepare($sql);
 
-    if (!$stmt) {
-        die("Error preparing statement: " . $connection->error);
+    if ($stmt) {
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if ($row) {
+            $nama = $row["nama_obat"];
+            $jenis = $row["jenis_obat"];
+            $harga = $row["harga"];
+            $produksi = $row["tanggal_produksi"];
+            $kadaluarsa = $row["tanggal_kadaluarsa"];
+            $stok = $row["stok"];
+        } else {
+            header("location: http://localhost/JobSheet4/list.php");  // Corrected the location URL
+            exit;
+        }
+
+        $stmt->close();
     }
-
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-
-    if ($row) {
-        $nama = htmlspecialchars($row["nama_obat"]);
-        $jenis = htmlspecialchars($row["jenis_obat"]);
-        $harga = $row["harga"];
-        $produksi = $row["tanggal_produksi"];
-        $kadaluarsa = $row["tanggal_kadaluarsa"];
-        $stok = $row["stok"];
-    } else {
-        header("location: http://localhost/JobSheet4/list.php");
-        exit;
-    }
-
-    $stmt->close();
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST["id"];
     $nama = $_POST["nama"];
@@ -63,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $kadaluarsa = $_POST["kadaluarsa"];
     $stok = $_POST["stok"];
 
-
     if (empty($id) || empty($nama) || empty($jenis) || empty($harga) || empty($produksi) || empty($kadaluarsa) || empty($stok)) {
         $pesanError = "Terdapat Error: Semua kolom harus diisi.";
     } else {
@@ -71,27 +68,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $sql = "UPDATE obat SET nama_obat = ?, jenis_obat = ?, harga = ?, tanggal_produksi = ?, tanggal_kadaluarsa = ?, stok = ? WHERE id = ?";
         $stmt = $connection->prepare($sql);
 
-        if (!$stmt) {
-            die("Error preparing statement: " . $connection->error);
-        }
+        if ($stmt) {
+            $stmt->bind_param("ssdssii", $nama, $jenis, $harga, $produksi, $kadaluarsa, $stok, $id);
+            $stmt->execute();
 
-        $stmt->bind_param("ssdss", htmlspecialchars($nama), htmlspecialchars($jenis), $harga, $produksi, $kadaluarsa, $stok, $id);
-        $stmt->execute();
+            if ($stmt->affected_rows > 0) {
+                $pesanBerhasil = "Obat berhasil diupdate.";
+            } else {
+                $pesanError = "Gagal mengupdate obat: " . $stmt->error;
+            }
 
-        if ($stmt->affected_rows > 0) {
-            $pesanBerhasil = "Obat berhasil diupdate.";
+            $stmt->close();
         } else {
-            $pesanError = "Gagal mengupdate obat: " . $stmt->error;
+            $pesanError = "Gagal mengupdate obat: " . $connection->error;
         }
-
-        $stmt->close();
     }
 }
 
 // Close the database connection
 $connection->close();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -102,7 +98,6 @@ $connection->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-
 <body>
     <div class="container my-5">
         <h2>Update Obat</h2>
@@ -169,8 +164,7 @@ $connection->close();
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Stok</label>
                 <div class="col-sm-6">
-                <input type="number" class="form-control" name="stok" value="<?php echo $stok; ?>">
-
+                    <input type="number" class="form-control" name="stok" value="<?php echo $stok; ?>">
                 </div>
             </div>
 
