@@ -24,39 +24,42 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $database = "db_apotek";
+    <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "db_apotek";
 
-                $connection = new mysqli($servername, $username, $password, $database);
+    $connection = new mysqli($servername, $username, $password, $database);
 
-                if ($connection->connect_error){
-                    die("gagal terhubung : " . $connection->connect_error);
-                }
+    if ($connection->connect_error){
+        die("gagal terhubung : " . $connection->connect_error);
+    }
 
-                $sql = "SELECT * FROM obat";
-                $result = $connection->query($sql);
+    $sql = "SELECT * FROM obat";
+    $result = $connection->query($sql);
 
-                while($row = $result->fetch_assoc()){
-                    echo "
-                        <tr>
-                            <td>{$row['id']}</td>
-                            <td>{$row['nama_obat']}</td>
-                            <td>{$row['jenis_obat']}</td>
-                            <td>{$row['harga']}</td>
-                            <td>{$row['tanggal_produksi']}</td>
-                            <td>{$row['tanggal_kadaluarsa']}</td>
-                            <td>
-                                <a class='btn btn-primary btn-sm' href='http://localhost/materi%20php/Job%204/edit.php?id={$row['id']}'>Edit</a>
-                                <a class='btn btn-danger btn-sm' href='/db_apotek/delete.php?id={$row['id']}'>Hapus</a>
-                            </td>
-                        </tr>
-                    ";
-                }
-                ?>
-            </tbody>
+    while($row = $result->fetch_assoc()){
+        // Add "Rp" in front of the harga
+        $formattedHarga = "Rp " . number_format($row['harga'], 0, ',', '.');
+
+        echo "
+            <tr>
+                <td>{$row['id']}</td>
+                <td>{$row['nama_obat']}</td>
+                <td>{$row['jenis_obat']}</td>
+                <td>{$formattedHarga}</td>
+                <td>{$row['tanggal_produksi']}</td>
+                <td>{$row['tanggal_kadaluarsa']}</td>
+                <td>
+                    <a class='btn btn-primary btn-sm' href='http://localhost/materi%20php/Job%204/edit.php?id={$row['id']}'>Edit</a>
+                    <a class='btn btn-danger btn-sm' href='http://localhost/materi%20php/Job%204/hapus.php?id={$row['id']}'>Hapus</a>
+                </td>
+            </tr>
+        ";
+    }
+    ?>
+</tbody>
         </table>
     </div>
 </body>
