@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
         }else{
              $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
              mysqli_query($conn, $insert);
-             header('location:login_form.php');
+             header('location: index.php');
         }
     }
 };
@@ -65,7 +65,7 @@ if(isset($_POST['submit'])){
             <option value="admin">admin</option>
         </select> 
         <input type="submit" name="submit" value="Daftar Sekarang" class="form-btn">
-        <p>Sudah memiliki akun? <a href="login_form.php">Masuk sekarang</a></p>
+        <p>Sudah memiliki akun? <a href="JobSheet4/index.php">Masuk sekarang</a></p>
     </form>
 </div>
 

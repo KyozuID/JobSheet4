@@ -1,66 +1,72 @@
+<?php
+
+@include 'config.php';
+
+session_start();
+
+if(isset($_POST['submit'])){
+
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $pass = md5($_POST['password']);
+    $cpass = md5($_POST['cpassword']);
+    $user_type = $_POST['user_type'];
+
+    $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
+
+    $result = mysqli_query($conn, $select);
+
+    if(mysqli_num_rows($result) > 0){
+
+        $row = mysqli_fetch_array($result);
+
+        if($row['user_type'] == 'admin'){
+
+            $_SESSION['admin_name'] = $row['name'];
+            header('location:admin.php');
+
+        }elseif($row['user_type'] == 'user'){
+
+            $_SESSION['user_name'] = $row['name'];
+            header('location:user_page.php');
+        }
+    }else{
+        $error[] = 'incorrect email or password!';  
+    }
+};
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apotek A24</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <title>Halaman Masuk</title>
+
+    <!-- custom css link -->
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-    <div class="container my-5">
-        <h2>List Obat</h2>
-        <a class="btn btn-primary" href="http://localhost/JobSheet4/tambah.php" role="button">Obat Baru</a>
-        <br>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nama Obat</th>
-                    <th>Jenis Obat</th>
-                    <th>Harga</th>
-                    <th>Tanggal Produksi</th>
-                    <th>Tanggal Kadaluarsa</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "db_apotek";
+    
+<div class="form-container">
 
-    $connection = new mysqli($servername, $username, $password, $database);
+    <form action="" method="post">
+        <h3>Masuk Sekarang</h3>
+        <?php
+        if(isset($error)){
+            foreach($error as $error){
+                echo '<span class="error-msg">'.$error.'</span>';
+            };
+        };
+        ?>  
+        <input type="email" name="email" required placeholder="Masukkan email anda">
+        <input type="password" name="password" required placeholder="Masukkan password anda"> 
+        <input type="submit" name="submit" value="Masuk Sekarang" class="form-btn">
+        <p>tidak punya akun? <a href="register_form.php">Daftar sekarang</a></p>
+    </form>
+</div>
 
-    if ($connection->connect_error){
-        die("gagal terhubung : " . $connection->connect_error);
-    }
-
-    $sql = "SELECT * FROM obat";
-    $result = $connection->query($sql);
-
-    while($row = $result->fetch_assoc()){
-        // Add "Rp" in front of the harga
-        $formattedHarga = "Rp " . number_format($row['harga'], 0, ',', '.');
-
-        echo "
-            <tr>
-                <td>{$row['id']}</td>
-                <td>{$row['nama_obat']}</td>
-                <td>{$row['jenis_obat']}</td>
-                <td>{$formattedHarga}</td>
-                <td>{$row['tanggal_produksi']}</td>
-                <td>{$row['tanggal_kadaluarsa']}</td>
-                <td>
-                    <a class='btn btn-primary btn-sm' href='localhost/JobSheet4/edit.php?id={$row['id']}'>Edit</a>
-                    <a class='btn btn-danger btn-sm' href='localhost/JobSheet4/hapus.php?id={$row['id']}'>Hapus</a>
-                </td>
-            </tr>
-        ";
-    }
-    ?>
-</tbody>
-        </table>
-    </div>
 </body>
 </html>

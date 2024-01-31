@@ -11,6 +11,7 @@ $jenis = "";
 $harga = "";
 $produksi = "";
 $kadaluarsa = "";
+$stok = "";
 
 $pesanError = "";
 $pesanBerhasil = "";
@@ -21,12 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $harga = $_POST['harga'];
     $produksi = $_POST['produksi'];
     $kadaluarsa = $_POST['kadaluarsa'];
+    $stok = $_POST['stok'];
 
-    if (empty($nama) || empty($jenis) || empty($harga) || empty($produksi) || empty($kadaluarsa)) {
+    if (empty($nama) || empty($jenis) || empty($harga) || empty($produksi) || empty($kadaluarsa) || empty($stok)) {
         $pesanError = "Terdapat Error: Semua kolom harus diisi.";
     } else {
-        $sql = "INSERT INTO obat (nama_obat, jenis_obat, harga, tanggal_produksi, tanggal_kadaluarsa) " .
-            "VALUES ('$nama', '$jenis', '$harga', '$produksi', '$kadaluarsa')";
+        $sql = "INSERT INTO obat (nama_obat, jenis_obat, harga, tanggal_produksi, tanggal_kadaluarsa, stok) " .
+            "VALUES ('$nama', '$jenis', '$harga', '$produksi', '$kadaluarsa', $stok)";
         
         $result = $connection->query($sql);
 
@@ -42,8 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $harga = "";
         $produksi = "";
         $kadaluarsa = "";
+        $stok = "";
 
-        header("location: http://localhost/JobSheet4/");
+        header("location: http://localhost/JobSheet4/list.php");
         exit;
     }
 }
@@ -108,6 +111,13 @@ $connection->close();
                     <input type="date" class="form-control" name="kadaluarsa" value="<?php echo $kadaluarsa;?>">
                 </div>
             </div>
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Stok</label>
+                <div class="col-sm-6">
+                <input type="number" class="form-control" name="stok" value="<?php echo $stok;?>">
+                </div>
+            </div>
+
 
             <?php
         if (!empty($pesanBerhasil)) {
@@ -131,7 +141,7 @@ $connection->close();
         <button type="submit" class="btn btn-primary">Tambah</button>
     </div>
     <div class="col-sm-3 d-grid">
-        <a class="btn btn-outline-primary" href="http://localhost/JobSheet4/index.php">Batal</a>
+        <a class="btn btn-outline-primary" href="http://localhost/JobSheet4/list.php">Batal</a>
     </div>
 </div>
 
