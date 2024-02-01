@@ -64,7 +64,7 @@ if(isset($_POST['submit'])){
             <option value="user">Pengguna</option>
         </select> 
         <input type="submit" name="submit" value="Daftar Sekarang" class="form-btn">
-        <p>Sudah memiliki akun? <a href="JobSheet4/index.php">Masuk sekarang</a></p>
+        <p>Sudah memiliki akun? <a href="index.php">Masuk sekarang</a></p>
     </form>
 </div>
 

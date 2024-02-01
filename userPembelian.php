@@ -94,7 +94,7 @@
     ?>
 
 <div class="container">
-    <form action="berhasil.php" method="post">
+    <form action="userBerhasil.php" method="post">
             <h2>Pebelian Obat</h2>
             <div class="form-group">
                 <label for="namaPembeli" class="form-label">Nama Pembeli:</label>
@@ -124,7 +124,7 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Beli" class="btn-primary">
-                <a href="list.php" class="btn-secondary">Batal</a>
+                <a href="userWeb.php" class="btn-secondary">Batal</a>
             </div>
         </form>
     </div>

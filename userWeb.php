@@ -9,7 +9,7 @@
 <body>
     <div class="container my-5">
         <h2>Data Obat</h2>
-        <a class="btn btn-primary" href="http://localhost/JobSheet4/pembelian.php" role="button">Beli Obat</a>
+        <a class="btn btn-primary" href="http://localhost/JobSheet4/userPembelian.php" role="button">Beli Obat</a>
         <a class="btn btn-danger" href="http://localhost/JobSheet4/index.php" role="button">Keluar</a>
         <br>
         <table class="table">

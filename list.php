@@ -11,7 +11,7 @@
         <h2>Data Obat</h2>
         <a class="btn btn-primary" href="http://localhost/JobSheet4/tambah.php" role="button">Obat Baru</a>
         <a class="btn btn-primary" href="http://localhost/JobSheet4/pembelian.php" role="button">Pembelian</a>
-        <a class="btn btn-primary" href="http://localhost/JobSheet4/index.php" role="button">Keluar</a>
+        <a class="btn btn-danger" href="http://localhost/JobSheet4/index.php" role="button">Keluar</a>
         <br>
         <table class="table">
             <thead>
